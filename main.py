@@ -14,15 +14,17 @@ def load_data():
         if "categories" not in data:
             data["categories"] = []
         return data
+    
 def save_data(data):
     with open(data_file, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
+        
 def main():
     try:
         data = load_data()
         if len(sys.argv) <= 2:
             print("Usage: python3 interest.py inputcat <new category>")
-        return
+            return
 
         command = sys.argv[1]
 
