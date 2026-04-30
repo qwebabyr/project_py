@@ -1,3 +1,18 @@
 {
-    "categories": []
+    "categories": [
+        "Товары",
+        "cars"
+    ],
+    "expenses": [
+        {
+            "amount": 100.0,
+            "category": "Товары",
+            "description": "pringls"
+        },
+        {
+            "amount": 1000.0,
+            "category": "cars",
+            "description": "mers"
+        }
+    ]
 }
