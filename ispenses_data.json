@@ -1,4 +1,12 @@
 {
-    "categories": [],
-    "expenses": []
+    "categories": [
+        "Cars"
+    ],
+    "expenses": [
+        {
+            "amount": 2000.0,
+            "category": "Cars",
+            "description": "Mersedes Benz"
+        }
+    ]
 }

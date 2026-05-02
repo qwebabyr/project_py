@@ -13,11 +13,9 @@ def load_data():
         
         if "categories" not in data:
             data["categories"] = []
-            return data
-        
         if "expenses" not in data:
             data["expenses"] = []
-            return data
+        return data
         
 def save_data(data):
     with open(data_file, "w", encoding="utf-8") as file:
@@ -73,7 +71,11 @@ def main():
                     print(f"{exp['description']:<20} | {exp['amount']:<10} | {exp['category']:<15}")
                     
         elif command == "total":
-            category_filter = sys.argv[2] if len(sys.argv) > 2 else None
+            if len(sys.argv) > 2: 
+                category_filter = sys.argv[2] 
+            else:
+                category_filter = None
+            
             total = sum(exp["amount"] for exp in data["expenses"]
                         if not category_filter or exp["category"] == category_filter)
 
