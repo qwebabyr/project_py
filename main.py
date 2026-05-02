@@ -4,17 +4,21 @@ import os
 
 data_file = "ispenses_data.json"
 
-def load_data():
-    if not os.path.exists(data_file):
-        return {"categories":[], "expenses":[]}
+def load_data(): 
+    if not os.path.exists(data_file): 
+        return {"categories":[], "expenses":[]} 
     
     with open(data_file, "r", encoding="utf-8") as file:
         data = json.load(file)
         
         if "categories" not in data:
             data["categories"] = []
-        return data
-    
+            return data
+        
+        if "expenses" not in data:
+            data["expenses"] = []
+            return data
+        
 def save_data(data):
     with open(data_file, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
@@ -41,7 +45,7 @@ def main():
         elif command == "add":
             amount = float(sys.argv[2])
             category = sys.argv[3]
-            description = " ".join(sys.argv[4:]) 
+            description = " ".join(sys.argv[4:])
 
             if category not in data["categories"]:
                 print(f"Error: Category '{category}' not in file. Please, add.")
@@ -56,7 +60,11 @@ def main():
             print(f"Rashod '{description}' for the summa {amount} add.")
         
         elif command == "list":
-            category_filter = sys.argv[2] if len(sys.argv) > 2 else None
+            if len(sys.argv) > 2:
+                category_filter = sys.argv[2]
+            else:
+                category_filter = None
+
             print(f"{'Name':<20} | {'Summa':<10} | {'Category':<15}")
             print("-" * 50)
 
@@ -77,7 +85,6 @@ def main():
         
     except (IndexError, ValueError):
         print("Error: Check this out.")
-
 
 if __name__ == "__main__":
     main()
